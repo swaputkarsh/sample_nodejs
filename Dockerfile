@@ -7,8 +7,7 @@ RUN apk add --update sudo
 # Install NPM
 RUN sudo apk add --no-cache npm
 
-# Create a working directory
-WORKDIR /app
+RUN npm install pm2 -g
 
 # Expose ports
 EXPOSE 8080 3000
