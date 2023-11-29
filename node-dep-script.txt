@@ -1,0 +1,18 @@
+node {
+    def gitRepo = 'https://github.com/swaputkarsh/sample_nodejs.git'
+    def gitBranch = 'main'
+
+    stage('Clone Repository') {
+        checkout([$class: 'GitSCM', branches: [[name: "*/${gitBranch}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: gitRepo]]])
+    }
+
+    stage('Install Dependencies') {
+        sh 'npm i'
+    }
+    
+    stage('Start Application') {
+      sh 'pm2 delete all'
+      sh 'pm2 start app.js --name depployment'
+      sh 'pm2 start 0'
+    }
+}
