@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    sh 'npm i'
+                }
+            }
+        }
+
+        stage('Start Application') {
+            steps {
+                script {
+                    sh 'pm2 restart 0'
+                }
+            }
+        }
+    }
+}
