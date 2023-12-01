@@ -3,10 +3,18 @@ pipeline {
 
     stages {
         stage('Clone Repository') {
+            when {
+                expression { BRANCH_NAME == 'testing' }
+            }
+            steps {
                 checkout scm
+            }
         }
 
         stage('Install Dependencies') {
+            when {
+                expression { BRANCH_NAME == 'testing' }
+            }
             steps {
                 script {
                     sh 'npm i'
@@ -15,6 +23,9 @@ pipeline {
         }
 
         stage('Start Application') {
+            when {
+                expression { BRANCH_NAME == 'testing' }
+            }
             steps {
                 script {
                     sh 'pm2 stop all'
