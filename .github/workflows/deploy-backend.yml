@@ -28,5 +28,5 @@ jobs:
             --instance-ids "${{ secrets.EC2_INSTANCE_ID }}" \
             --document-name "AWS-RunShellScript" \
             --comment "Deploying backend via GitHub Actions" \
-            --parameters 'commands=["cd /home/ubuntu/sample_nodejs", "git pull origin main", "npm install", "pm2 restart 1"]' \
+            --parameters 'commands=["cd /home/ubuntu/sample_nodejs", "git pull origin main", "npm install", "sudo pm2 restart 1"]' \
             --region ${{ vars.AWS_REGION }}
